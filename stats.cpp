@@ -1,52 +1,55 @@
 #include "stats.h"
 
-Stats Statistics::ComputeStatistics(const std::vector<float>& values) {
-    //Implement statistics here
-    if (values.size() == 0) {
-        Stats noStats;
-        return noStats;
+namespace Statistics
+{
+    Stats ComputeStatistics(const std::vector<double>& values) {
+        //Implement statistics here
+        if (values.size() == 0) {
+            Stats noStats;
+            return noStats;
+        }
+
+        Stats stats;
+        stats.average = ComputeAverage(values);
+        stats.max = FindMax(values);
+        stats.min = FindMin(values);
+        return stats;
     }
 
-    Stats stats;
-    stats.average = computeAverage(values);
-    stats.max = findMax(values);
-    stats.min = findMin(values);
-    return stats;
-}
+    double ComputeAverage(const std::vector<double>& values)
+    {
+        double sum = 0;
 
-float Statistics::computeAverage(const std::vector<float>& values)
-{
-    float sum = 0;
+        for (double value : values) {
+            sum += value;
+        }
 
-    for (float value : values) {
-        sum += value;
+        return sum / values.size();
     }
-
-    return sum / values.size();
-}
-
-float Statistics::findMax(const std::vector<float>& values)
-{
-    float max = values[0];
     
-    for (float value : values) {
-        if (value > max) {
-            max = value;
+    double FindMax(const std::vector<double>& values)
+    {
+        double max = values[0];
+
+        for (double value : values) {
+            if (value > max) {
+                max = value;
+            }
         }
+
+        return max;
     }
 
-    return max;
-}
+    double FindMin(const std::vector<double>& values)
+    {
+        double min = values[0];
 
-float Statistics::findMin(const std::vector<float>& values)
-{
-    float min = values[0];
-
-    for (float value : values) {
-        if (value < min) {
-            min = value;
+        for (double value : values) {
+            if (value < min) {
+                min = value;
+            }
         }
-    }
 
-    return min;
+        return min;
+    }
 }

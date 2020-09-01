@@ -4,25 +4,25 @@
 class Stats
 {
 public:
-    float average;
-    float max;
-    float min;
+    double average;
+    double max;
+    double min;
     
     Stats()
     {
-        average = NAN;
-        max = NAN;
-        min = NAN;
+        average = nan("null");
+        max = nan("null");
+        min = nan("null");
     }
 };
 
 namespace Statistics {
 
-    Stats ComputeStatistics(const std::vector<float>& );
+    Stats ComputeStatistics(const std::vector<double>& );
 
-    float computeAverage(const std::vector<float>&);
+    double ComputeAverage(const std::vector<double>&);
 
-    float findMax(const std::vector<float>&);
+    double FindMax(const std::vector<double>&);
 
-    float findMin(const std::vector<float>&);
+    double FindMin(const std::vector<double>&);
 }
